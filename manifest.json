@@ -1,0 +1,33 @@
+{
+	"manifest_version": 2,
+	"name": "Fullscreen On Load",
+	"version": "0.1",
+	"description": "指定したページを開いたとき、フルスクリーンにします。",
+	"icons": {
+		"32": "icons/32.png",
+		"48": "icons/48.png"
+	},
+	"permissions": [
+		"*://*/*"
+	],
+	"browser_action": {
+		"default_icon": "icons/32.png",
+		"default_title": "Fullscreen On Load"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://i.pximg.net/*",
+				"https://www.pixiv.net/member_illust.php?mode=manga&illust_id=*"
+			],
+			"js": [
+				"content_scripts/main.js"
+			]
+		}
+	],
+	"background": {
+		"scripts": [
+			"background-script.js"
+		]
+	}
+}
