@@ -1,4 +1,18 @@
-(function () {
+(async function () {
+	let storageResult;
+	try {
+		storageResult = await browser.storage.sync.get("uris");
+		console.log(storageResult);
+	} catch (ex) {
+		console.log(ex);
+		return;
+	}
+
+	browser.contentScripts.register({
+		"js": [{ file: "/content_scripts/main.js" }],
+		"matches": storageResult.uris
+	});
+
 	let prevState;
 
 	browser.runtime.onMessage.addListener(function (message) {

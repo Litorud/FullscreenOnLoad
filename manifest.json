@@ -8,26 +8,24 @@
 		"48": "icons/48.png"
 	},
 	"permissions": [
-		"*://*/*"
+		"*://*/*",
+		"storage"
 	],
 	"browser_action": {
 		"default_icon": "icons/32.png",
 		"default_title": "Fullscreen On Load"
 	},
-	"content_scripts": [
-		{
-			"matches": [
-				"https://i.pximg.net/*",
-				"https://www.pixiv.net/member_illust.php?mode=manga&illust_id=*"
-			],
-			"js": [
-				"content_scripts/main.js"
-			]
-		}
-	],
 	"background": {
 		"scripts": [
 			"background-script.js"
 		]
+	},
+	"options_ui": {
+		"page": "options.html"
+	},
+	"applications": {
+		"gecko": {
+			"id": "{d6c1399d-4934-464e-8cfe-865f932681e8}"
+		}
 	}
 }
