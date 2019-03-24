@@ -1,19 +1,27 @@
 (async function () {
-	let storageResult;
-	try {
-		storageResult = await browser.storage.sync.get("uris");
-	} catch (ex) {
-		console.log(ex);
-		return;
+	// 保存されている設定を読み込む。
+	let registeredContentScript;
+
+	async function loadUris() {
+		let storageResult;
+		try {
+			storageResult = await browser.storage.sync.get("uris");
+		} catch (ex) {
+			console.log(ex);
+			return;
+		}
+
+		registeredContentScript = await browser.contentScripts.register({
+			"js": [{ file: "/content_scripts/main.js" }],
+			"matches": storageResult.uris
+		});
 	}
 
-	browser.contentScripts.register({
-		"js": [{ file: "/content_scripts/main.js" }],
-		"matches": storageResult.uris
-	});
+	loadUris();
 
 	let prevState;
 
+	// コンテントスクリプトの求めに応じて、フルスクリーンにしたり戻したりする。
 	browser.runtime.onMessage.addListener(function (message) {
 		switch (message.method) {
 			case "fullscreen":
@@ -39,4 +47,10 @@
 			state: prevState ? prevState : "normal"
 		});
 	}
+
+	// 設定が変更されたら読み込み直す。
+	browser.storage.onChanged.addListener(function () {
+		registeredContentScript.unregister();
+		loadUris();
+	});
 })()
