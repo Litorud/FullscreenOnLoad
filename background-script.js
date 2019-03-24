@@ -12,16 +12,17 @@
 		}
 
 		registeredContentScript = await browser.contentScripts.register({
-			"js": [{ file: "/content_scripts/main.js" }],
-			"matches": storageResult.uris
+			js: [{ file: "/content_scripts/main.js" }],
+			matches: storageResult.uris,
+			runAt: "document_start"
 		});
 	}
 
 	loadUris();
 
+	// コンテントスクリプトの求めに応じて、フルスクリーンにしたり戻したりする。
 	let prevState;
 
-	// コンテントスクリプトの求めに応じて、フルスクリーンにしたり戻したりする。
 	browser.runtime.onMessage.addListener(function (message) {
 		switch (message.method) {
 			case "fullscreen":
