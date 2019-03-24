@@ -6,10 +6,11 @@
 </head>
 
 <body>
-    <form>
+    <form name="options">
         <label for="uris">フルスクリーンにする URI:</label>
-        <textarea id="uris" style="width:100%"></textarea><button type="submit">保存</button>
+        <textarea id="uris" name="uris" rows=5 style="width:100%"></textarea>
         <p>改行や空白区切りで複数指定できます。ワイルドカード“*”が使えます。</p>
+        <button type=submit>保存</button>
     </form>
     <script src="options.js"></script>
 </body>

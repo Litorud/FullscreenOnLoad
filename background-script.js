@@ -2,7 +2,6 @@
 	let storageResult;
 	try {
 		storageResult = await browser.storage.sync.get("uris");
-		console.log(storageResult);
 	} catch (ex) {
 		console.log(ex);
 		return;

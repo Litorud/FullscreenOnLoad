@@ -4,7 +4,7 @@
 	"version": "0.3",
 	"description": "特定のページを開いたとき、フルスクリーンにします。",
 	"icons": {
-		"48": "icons/icon.svg"
+		"48": "icon.svg"
 	},
 	"permissions": [
 		"*://*/*",
