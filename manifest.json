@@ -1,13 +1,14 @@
 {
 	"manifest_version": 2,
 	"name": "Fullscreen On Load",
-	"version": "0.4",
+	"version": "0.5",
 	"description": "特定のページを開いたとき、フルスクリーンにします。",
 	"icons": {
 		"48": "icon.svg"
 	},
 	"permissions": [
 		"*://*/*",
+		"webNavigation",
 		"storage"
 	],
 	"background": {

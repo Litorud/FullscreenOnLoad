@@ -1,9 +1,7 @@
 browser.runtime.sendMessage({
-	method: "fullscreen"
-});
+	method: 'fullscreen'
+})
 
-addEventListener("unload", function () {
-	browser.runtime.sendMessage({
-		method: "revert"
-	});
-});
+addEventListener('unload', () => browser.runtime.sendMessage({
+	method: 'revert'
+}))

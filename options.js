@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const uris = storageResult.uris;
     const form = document.forms["options"];
     const urisTextArea = form.uris;
-    urisTextArea.value = uris ? uris.join("\n") : "https://www.youtube.com/watch?*";
+    urisTextArea.value = uris ? uris.join("\n") : "*://example.*/*";
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
